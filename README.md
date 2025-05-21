@@ -2,7 +2,7 @@
 
 A simple tool to track Amazon product prices.
 
-## Tech Stack (Day 1)
+## Tech Stack 
 - Backend: Flask (Python)
 - Frontend: HTML + JS
 - Database: SQLite (later)
