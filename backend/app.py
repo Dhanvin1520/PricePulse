@@ -1,16 +1,28 @@
-from flask import Flask, request, jsonify
-from scraper import scrape_price
+from flask import Flask, render_template, request, jsonify
+from database import create_table, insert_price_data, get_all_prices
+from scraper import scrape_amazon_product
+from scheduler import start_scheduler
+from datetime import datetime
 
 app = Flask(__name__)
+create_table()
+start_scheduler()
 
-@app.route('/scrape', methods=['POST'])
-def scrape():
-    url = request.form.get('url')
-    if not url:
-        return jsonify({'error': 'URL is required'}), 400
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-    price = scrape_price(url)
-    return jsonify({'price': price})
+@app.route('/submit-url', methods=['POST'])
+def submit_url():
+    url = request.form['url']
+    data = scrape_amazon_product(url)
+    insert_price_data(url, data['title'], data['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    return f"Scraped: {data['title']} - {data['price']}"
+
+@app.route('/history')
+def history():
+    records = get_all_prices()
+    return jsonify(records)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5002)
