@@ -1,5 +1,4 @@
 from playwright.sync_api import sync_playwright
-import re
 
 def scrape_amazon_product(url):
     with sync_playwright() as p:
