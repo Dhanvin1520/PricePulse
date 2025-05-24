@@ -3,22 +3,35 @@ document.getElementById("urlForm").addEventListener("submit", async function (e)
 
   const urlInput = document.getElementById("urlInput").value;
 
-  const response = await fetch("/submit-url", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `url=${encodeURIComponent(urlInput)}`
-  });
+  try {
+    const response = await fetch("/submit-url", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `url=${encodeURIComponent(urlInput)}`
+    });
 
-  const data = await response.json(); 
-  document.getElementById("productPreview").innerHTML = `
-    <img src="${data.image}" alt="Product Image" style="width:150px;">
-    <h3>${data.title}</h3>
-    <p>Price: ${data.price}</p>
-  `;
+    if (!response.ok) {
 
-  loadPriceChart();
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    document.getElementById("productPreview").innerHTML = `
+      <img src="${data.image}" alt="Product Image" style="width:150px;">
+      <h3>${data.title}</h3>
+      <p>Price: ${data.price}</p>
+    `;
+
+    loadPriceChart();
+
+  } catch (err) {
+    console.error("Error:", err);
+    document.getElementById("productPreview").innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+  }
 });
 
 let chart; 
@@ -70,7 +83,7 @@ async function loadPriceChart() {
           },
           ticks: {
             callback: function(value) {
-              return '₹' + value.toLocaleString(); // Format y-axis values
+              return '₹' + value.toLocaleString(); 
             }
           }
         }

@@ -5,6 +5,29 @@
   <title>PricePulse - Amazon Price Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+      button.loading {
+    position: relative;
+    pointer-events: none; 
+    color: transparent;
+  }
+
+  button.loading::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f8f8f8;
@@ -55,7 +78,7 @@
 
   <form id="urlForm">
     <input type="text" id="urlInput" placeholder="Enter Amazon product URL" required>
-    <button type="submit">Track Price</button>
+    <button type="submit" id="trackBtn">Track Price</button>
   </form>
   
   <div id="productPreview"></div>
@@ -68,7 +91,48 @@
 <script src="https://cdn.jsdelivr.net/npm/luxon"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
-
+  <script>
+    document.getElementById("urlForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+  
+      const trackBtn = document.getElementById("trackBtn");
+      trackBtn.classList.add("loading");
+      trackBtn.disabled = true;
+  
+      const urlInput = document.getElementById("urlInput").value;
+  
+      try {
+        const response = await fetch("/submit-url", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `url=${encodeURIComponent(urlInput)}`
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+  
+        const data = await response.json();
+  
+        document.getElementById("productPreview").innerHTML = `
+          <img src="${data.image}" alt="Product Image" style="width:150px;">
+          <h3>${data.title}</h3>
+          <p>Price: ${data.price}</p>
+        `;
+  
+        loadPriceChart();
+  
+      } catch (err) {
+        console.error("Error:", err);
+        document.getElementById("productPreview").innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+      } finally {
+        trackBtn.classList.remove("loading");
+        trackBtn.disabled = false;
+      }
+    });
+  </script>
   <div class="footer">
     <p>PricePulse – May 2025</p>
   </div>

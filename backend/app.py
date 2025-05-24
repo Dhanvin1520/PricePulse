@@ -14,13 +14,18 @@ def home():
 
 @app.route('/submit-url', methods=['POST'])
 def submit_url():
-    url = request.form['url']
-    data = scrape_amazon_product(url)
+    try:
+        url = request.form['url']
+        data = scrape_amazon_product(url)  
 
+        insert_price_data(url, data['title'], data['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-    insert_price_data(url, data['title'], data['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        return jsonify(data)
+    except Exception as e:
+   
+        print(f"Error in /submit-url: {e}")
 
-    return jsonify(data)  
+        return jsonify({'error': str(e)}), 500
 @app.route('/history')
 def history():
     records = get_all_prices()
