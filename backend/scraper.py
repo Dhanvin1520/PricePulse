@@ -21,5 +21,12 @@ def scrape_amazon_product(url):
         except:
             price = "N/A"
 
+        try:
+            image_element = page.query_selector("#imgTagWrapperId img")
+            image_url = image_element.get_attribute("src") if image_element else ""
+        except:
+            image_url = ""
+
         browser.close()
-        return {"title": title, "price": price}
+
+        return {"title": title, "price": price, "image": image_url}

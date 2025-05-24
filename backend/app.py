@@ -16,9 +16,11 @@ def home():
 def submit_url():
     url = request.form['url']
     data = scrape_amazon_product(url)
-    insert_price_data(url, data['title'], data['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    return f"Scraped: {data['title']} - {data['price']}"
 
+
+    insert_price_data(url, data['title'], data['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
+    return jsonify(data)  
 @app.route('/history')
 def history():
     records = get_all_prices()
