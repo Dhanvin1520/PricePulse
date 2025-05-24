@@ -9,7 +9,5 @@ A simple tool to track Amazon product prices.
 - Scraping: Selenium (planned)
 - Deployment: Render (planned)
 
-## Day 1 Setup
-- Project folders created
-- Flask app scaffolded
-- Basic form to submit Amazon URL
+Day 4 :
+done with working live preview of image and graph of product 
