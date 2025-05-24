@@ -1,7 +1,4 @@
-Flask
-gunicorn
-requests
-
-playwright
-
-apscheduler
+Flask==2.3.3
+gunicorn==21.2.0
+apscheduler==3.10.4
+playwright==1.44.0
