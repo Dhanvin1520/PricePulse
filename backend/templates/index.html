@@ -53,13 +53,24 @@
   <h1>📦 PricePulse</h1>
   <p>Track the price of any Amazon product automatically</p>
 
-  <form action="/submit-url" method="POST">
-    <input type="text" name="url" placeholder="Enter Amazon Product URL" required>
+  <form id="urlForm">
+    <input type="text" id="urlInput" placeholder="Enter Amazon product URL" required>
     <button type="submit">Track Price</button>
   </form>
+  
+  <div id="productPreview"></div>
+  
+  <canvas id="priceChart" width="600" height="400"></canvas>
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/luxon"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 
   <div class="footer">
-    <p>Developed for internship assignment – May 2025</p>
+    <p>PricePulse – May 2025</p>
   </div>
 </body>
 </html>
