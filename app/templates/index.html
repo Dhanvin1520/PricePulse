@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PricePulse</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>PricePulse - E-Commerce Price Tracker</h1>
+        <form id="track-form">
+            <input type="text" id="url" name="url" placeholder="Enter Amazon Product URL" required>
+            <input type="email" id="email" name="email" placeholder="Your Email (for alerts)">
+            <input type="number" id="target_price" name="target_price" placeholder="Target Price (₹)">
+            <button type="submit">Track</button>
+        </form>
+        <div id="product-preview"></div>
+        <canvas id="price-chart"></canvas>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
