@@ -1,8 +1,6 @@
-
-# PricePulse - E-Commerce Price Tracker & Smart Comparator
 #Day 6 
 not able to commit the updated file due to error in commit .env file
-
+# PricePulse - E-Commerce Price Tracker & Smart Comparator
 PricePulse is a full-stack web application that enables users to track prices of Amazon products, visualize price trends over time, and receive email alerts when prices drop below a specified threshold. Additionally, it offers an optional AI-powered feature to compare prices across platforms like Flipkart and Meesho.
 
 
