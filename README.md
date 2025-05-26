@@ -1,4 +1,7 @@
 # PricePulse
+#Day 6 
+not able to commit the updated file due to error in commit .env file
+
 
 A simple tool to track Amazon product prices.
 
@@ -8,6 +11,3 @@ A simple tool to track Amazon product prices.
 - Database: SQLite (later)
 - Scraping: Selenium (planned)
 - Deployment: Render (planned)
-
-Day 4 :
-done with working live preview of image and graph of product 
