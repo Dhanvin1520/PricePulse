@@ -13,7 +13,7 @@ PricePulse is a full-stack web application that enables users to track prices of
 - **Price Trend Visualization**: Displays a line graph of historical prices using Chart.js.
 - **Product Details**: Shows product name, image, and current price.
 - **Price Drop Alerts**: Sends email notifications via SendGrid when the price falls below a user-defined threshold.
-- **Bonus (Optional)**: Uses an AI API (e.g., Gemini) to compare prices on other platforms like Flipkart and Meesho.
+  
 
 ---
 
