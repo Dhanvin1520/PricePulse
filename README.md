@@ -1,6 +1,6 @@
 # 🛍️ PricePulse – E-Commerce Price Tracker & Smart Comparator
 
-**PricePulse** is a full-stack web application that tracks Amazon product prices, visualizes historical price trends, and sends smart email alerts when prices drop below a desired threshold. Built as part of an internship assignment at **Alfaleus Tech**, it combines intelligent automation with a modern, responsive UI.
+**PricePulse** is a full-stack web application that tracks Amazon product prices, visualizes historical price trends, and sends smart email alerts when prices drop below a desired threshold, it combines intelligent automation with a modern, responsive UI.
 
 ---
 
