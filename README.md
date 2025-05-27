@@ -1,24 +1,49 @@
-#Day 6 
-not able to commit the updated file due to error in commit .env file
-# PricePulse - E-Commerce Price Tracker & Smart Comparator
-PricePulse is a full-stack web application that enables users to track prices of Amazon products, visualize price trends over time, and receive email alerts when prices drop below a specified threshold. Additionally, it offers an optional AI-powered feature to compare prices across platforms like Flipkart and Meesho.
+# 🛍️ PricePulse – E-Commerce Price Tracker & Smart Comparator
 
-
-## Features
-
-- **Input Amazon URL**: Users can enter an Amazon product URL to start tracking.
-- **Price Tracking**: Automatically scrapes and records the product’s price every 30 minutes.
-- **Price Trend Visualization**: Displays a line graph of historical prices using Chart.js.
-- **Product Details**: Shows product name, image, and current price.
-- **Price Drop Alerts**: Sends email notifications via SendGrid when the price falls below a user-defined threshold.
-  
+**PricePulse** is a full-stack web application that tracks Amazon product prices, visualizes historical price trends, and sends smart email alerts when prices drop below a desired threshold. Built as part of an internship assignment at **Alfaleus Tech**, it combines intelligent automation with a modern, responsive UI.
 
 ---
 
-## Tech Stack
+## 🚀 Features
 
-- **Frontend**: React, Chart.js, Axios
-- **Backend**: Flask, BeautifulSoup (for scraping), APScheduler (for scheduling), SendGrid (for emails), Flask-CORS
-- **Database**: SQLite (local) or PostgreSQL (production on Render)
-- **Deployment**: Vercel (frontend), Render (backend)
-- : Gemini API for cross-platform price comparison
+- 🔍 **Track Amazon Products**  
+  Enter any Amazon product URL to fetch and display its name, current price, and image.
+
+- 📈 **Price History Visualization**  
+  View price trends over time via an interactive chart powered by Chart.js.
+
+- 📬 **Price Drop Alerts**  
+  Set a target price and get email alerts via SendGrid when the product’s price drops below that level.
+
+- ⏰ **Automated Price Monitoring**  
+  Prices are automatically scraped every 30 minutes using APScheduler.
+
+- 📱 **Responsive UI**  
+  Built with Tailwind CSS to ensure a smooth experience across all devices.
+
+---
+
+## 🧰 Tech Stack
+
+**Backend:**  
+- Flask  
+- Playwright (for web scraping)  
+- SQLite (for storing product and price data)  
+- APScheduler (for task scheduling)  
+- SendGrid (for email notifications)
+
+**Frontend:**  
+- React Tailwind CSS  
+
+---
+
+## ⚙️ How It Works
+
+1. **User submits an Amazon product URL.**  
+2. **Playwright** scrapes the current price, title, and image.  
+3. Product details are stored in **SQLite**.  
+4. Every 30 minutes, **APScheduler** re-scrapes the product price.  
+5. If the price drops below the user-set threshold, **SendGrid** sends an alert email.  
+6. **Chart.js** visualizes historical pricing data on the frontend.
+
+---
